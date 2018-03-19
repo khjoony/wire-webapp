@@ -60,10 +60,7 @@ class ChooseHandle extends React.PureComponent {
     this.props
       .setHandle(this.state.handle)
       .then(() => {
-        const link = document.createElement('a');
-        link.href = pathWithParams(EXTERNAL_ROUTE.LOGIN, 'reason=registration');
-        document.body.appendChild(link); // workaround for Firefox
-        link.click();
+        window.location = pathWithParams(EXTERNAL_ROUTE.LOGIN, 'reason=registration');
       })
       .catch(error => {
         if (error.label === BackendError.HANDLE_ERRORS.INVALID_HANDLE && this.state.handle.trim().length < 2) {

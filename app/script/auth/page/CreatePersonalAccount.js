@@ -55,12 +55,7 @@ class CreatePersonalAccount extends React.PureComponent {
         this.props.trackNameWithContext(EVENT_NAME.PERSONAL.CREATED, EVENT_CONTEXT.PERSONAL_INVITE);
         this.props.trackNameWithContext(EVENT_NAME.PERSONAL.VERIFIED, EVENT_CONTEXT.PERSONAL_INVITE);
       })
-      .then(() => {
-        const link = document.createElement('a');
-        link.href = pathWithParams(EXTERNAL_ROUTE.LOGIN, 'reason=registration');
-        document.body.appendChild(link); // workaround for Firefox
-        link.click();
-      })
+      .then(() => (window.location = pathWithParams(EXTERNAL_ROUTE.LOGIN, 'reason=registration')))
       .catch(error => console.error('Failed to create personal account', error));
   };
 
